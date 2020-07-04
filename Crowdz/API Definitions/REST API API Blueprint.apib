@@ -1,0 +1,620 @@
+FORMAT: 1A
+HOST: http://api.crowdz.io/invx/api/v1
+
+# REST API
+
+This is a sample definition of the Crowdz REST API.
+
+The views expressed here are my own and do not necessarily reflect the views of Crowdz.
+
+# Group Customers
+
+## GET /customer/getcustomer{?contact_id,registration_num,tax_num}
+
++ Parameters
+
+    + contact_id
+
+    + registration_num (optional)
+
+    + tax_num (optional)
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: `Api-Key`
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": "string",
+                "customerName": "string",
+                "contactName": "string",
+                "emailAddress": "string",
+                "phone": "string",
+                "addresses": [
+                {
+                    "type": "default",
+                    "line1": "string",
+                    "line2": "string",
+                    "city": "string",
+                    "region": "string",
+                    "country": "string",
+                    "postalCode": "string"
+                }
+                ],
+                "contacts": [
+                {
+                    "name": "string",
+                    "email": "string",
+                    "phone": [
+                    {
+                        "number": "string",
+                        "type": "string"
+                    }
+                    ],
+                    "address": {
+                    "type": "default",
+                    "line1": "string",
+                    "line2": "string",
+                    "city": "string",
+                    "region": "string",
+                    "country": "string",
+                    "postalCode": "string"
+                    },
+                    "status": "string"
+                }
+                ],
+                "registrationNumber": "string",
+                "taxNumber": "string",
+                "status": "string",
+                "modifiedDate": "string"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 405 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
+## POST /customer/create
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: `Api-Key`
+
+    + Body
+
+            {
+                "id": "string",
+                "customerName": "string",
+                "contactName": "string",
+                "emailAddress": "string",
+                "phone": "string",
+                "addresses": [
+                {
+                    "type": "string",
+                    "line1": "string",
+                    "line2": "string",
+                    "city": "string",
+                    "country": "string",
+                    "region": "string",
+                    "postalCode": "string"
+                }
+                ],
+                "contacts": [
+                {
+                    "name": "string",
+                    "email": "string",
+                    "phone": [
+                    {
+                        "number": "string",
+                        "type": "string"
+                    }
+                    ],
+                    "address": {
+                    "type": "string",
+                    "line1": "string",
+                    "line2": "string",
+                    "city": "string",
+                    "country": "string",
+                    "region": "string",
+                    "postalCode": "string"
+                    }
+                }
+                ],
+                "registrationNumber": "string",
+                "taxNumber": "string",
+                "status": "string"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "Status": "success",
+                "Message": "Customer Created Successfully."
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 405 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
+# Group Invoices
+
+## GET /invoice/getinvoice{?invoice_no,access_id}
+
++ Parameters
+
+    + invoice_no
+
+    + access_id (optional)
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: `Api-Key`
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "InvoiceHeader": {
+                "Invoice_Type": "string",
+                "Invoice_Amount": "string",
+                "Payment_Terms": "string",
+                "Invoice_Num": "string",
+                "Invoice_Date": "string",
+                "Invoice_Due_Date": "string",
+                "Currency_Code": "string",
+                "PONum": "string",
+                "Bill_To": {
+                    "Company": "string",
+                    "Address1": "string",
+                    "Address2": "string",
+                    "City": "string",
+                    "State": "string",
+                    "Country": "string",
+                    "Postal_Code": "string",
+                    "Contact_Name": "string",
+                    "Contact_Phone": "string",
+                    "Contact_Email": "string"
+                },
+                "Ship_To": {
+                    "Company": "string",
+                    "Address1": "string",
+                    "Address2": "string",
+                    "City": "string",
+                    "State": "string",
+                    "Country": "string",
+                    "Postal_Code": "string",
+                    "Contact_Name": "string",
+                    "Contact_Phone": "string",
+                    "Contact_Email": "string"
+                }
+                },
+                "Invoice_Lines": [
+                {
+                    "Part_Description": "string",
+                    "Quantity": "string",
+                    "Order_Unit": "string",
+                    "Unit_Price": "string",
+                    "Extended_Price": "string"
+                }
+                ],
+                "Customer": {
+                "company_name": "string",
+                "tax_number": "string",
+                "registration_number": "string",
+                "address": {
+                    "Address1": "string",
+                    "Address2": "string",
+                    "City": "string",
+                    "State": "string",
+                    "Country": "string",
+                    "Postal_Code": "string",
+                    "Contact_Name": "string",
+                    "Contact_Phone": "string",
+                    "Contact_Email": "string"
+                }
+                },
+                "custom_data": [
+                {
+                    "customer_internal_id": "string",
+                    "invoice_id": "string",
+                    "invoice_internal_id": "string",
+                    "custom_form_id": "string"
+                }
+                ],
+                "Attachments": [
+                {
+                    "encoding": "string",
+                    "mime_type": "string",
+                    "data": "string"
+                }
+                ]
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 405 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
+## POST /invoice/create
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: `Api-Key`
+
+    + Body
+
+            {
+                "InvoiceHeader": {
+                "Invoice_Type": "S",
+                "Invoice_Amount": "string",
+                "Payment_Terms":0,
+                "Invoice_Num": "string",
+                "Invoice_Date": "2020-07-05",
+                "Invoice_Due_Date": "2020-07-05",
+                "Currency_Code": "string",
+                "PO_Num": "string",
+                "Bill_To": {
+                    "Company": "string",
+                    "Address1": "string",
+                    "Address2": "string",
+                    "City": "string",
+                    "State": "string",
+                    "Country": "string",
+                    "Postal_Code": "string",
+                    "Contact_Name": "string",
+                    "Contact_Phone": "string",
+                    "Contact_Email": "user@example.com"
+                },
+                "Ship_To": {
+                    "Company": "string",
+                    "Address1": "string",
+                    "Address2": "string",
+                    "City": "string",
+                    "State": "string",
+                    "Country": "string",
+                    "Postal_Code": "string",
+                    "Contact_Name": "string",
+                    "Contact_Phone": "string",
+                    "Contact_Email": "user@example.com"
+                }
+                },
+                "Invoice_Lines": [
+                {
+                    "Part_Description": "string",
+                    "Quantity":0,
+                    "Order_Unit": "EA",
+                    "Unit_Price": "string",
+                    "Extended_Price": "string"
+                }
+                ],
+                "Customer": {
+                "company_name": "string",
+                "tax_number": "string",
+                "registration_number": "string",
+                "address": {
+                    "Address1": "string",
+                    "Address2": "string",
+                    "City": "string",
+                    "State": "string",
+                    "Country": "string",
+                    "Postal_Code": "string",
+                    "Contact_Name": "string",
+                    "Contact_Phone": "string",
+                    "Contact_Email": "string"
+                }
+                },
+                "custom_data": [
+                {
+                    "customer_internal_id": "string",
+                    "invoice_id": "string",
+                    "invoice_internal_id": "string",
+                    "custom_form_id": "string"
+                }
+                ],
+                "Attachments": [
+                {
+                    "encoding": "string",
+                    "mime_type": "string",
+                    "data": "string"
+                }
+                ]
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "Status": "success",
+                "Message": "Invoice has been accepted, you don't need to do anything now. We will process it and let you know if we encounter any problem"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 405 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
+## GET /invoice/getTransaction{?transaction_hash}
+
++ Parameters
+
+    + transaction_hash
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: `Api-Key`
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "transaction_hash": "<transaction hash>",
+                "blockNumber": "<block number>",
+                "From": "<source address>",
+                "Gas_Price": "<gas price in gwei>",
+                "hash": "<transaction hash>",
+                "Input_Data": "<data associated with transacttion>",
+                "Nonce": "<nonce of transaction>",
+                "To": "<destination address>",
+                "transactionIndex": "<transaction index>"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 405 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
+## GET /invoice/payment{?invoice_no,access_id}
+
++ Parameters
+
+    + invoice_no
+
+    + access_id (optional)
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: `Api-Key`
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "invoice_no": "string",
+                "currency": "string",
+                "invoice_amount": "string",
+                "amount_paid": "string",
+                "amount_due": "string",
+                "payment_status": "pending",
+                "payment_details": [
+                {
+                    "from_account":0,
+                    "to_account":0,
+                    "transaction_method": "string",
+                    "transaction_amount": "string",
+                    "transaction_id": "string",
+                    "transaction_status": "success",
+                    "date_paid": "string"
+                }
+                ],
+                "custom_data": [
+                {
+                    "customer_internal_id": "string",
+                    "invoice_id": "string",
+                    "invoice_internal_id": "string",
+                    "custom_form_id": "string"
+                }
+                ]
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
+
++ Response 405 (application/json)
+
+    + Body
+
+            {
+                "detail": "An specific information for the occurence of this error.",
+                "error_code": "Error Response code"
+            }
